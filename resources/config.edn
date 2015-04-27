@@ -1,0 +1,12 @@
+{:langs {"arc" "Arc"
+         "clojure" "Clojure"
+         "common-lisp" "Common Lisp"
+         "emacs-lisp" "Emacs Lisp"
+         "hy" "Hy"
+         "julia" "Julia"
+         "newlisp" "NewLisp"
+         "racket" "Racket"
+         "scheme" "Scheme"
+         "shen" "Shen"}
+ :cache {:host "localhost"
+         :port 6379}}
