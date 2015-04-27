@@ -40,24 +40,21 @@
                 (update-cache repo)
                 (if cached?
                   (prn (str (:name repo) " is not trending"))
-                  (prn (str (:name repo) " is trending")))))))
+                  (prn (str (:name repo) " is TRENDING")))))))
         (recur))))
-
-(defn post-trending-repos [ch-lang-repos ch-repos langs]
-  ;; communication via two channels
-  ;; channel 1: a collection of repos of a particular lang
-  ;; channel 2: an individual repo
-  (produce-lang-repos ch-lang-repos langs)
-  (consume-lang-repos ch-lang-repos ch-repos)
-  (consume-repos ch-repos))
 
 (defn -main []
   (let [ch-lang-repos (chan)
         ch-repos (chan)
         langs (:langs cfg)]
-    (at-at/every check-frequency
-                 (partial post-trending-repos
-                          ch-lang-repos
-                          ch-repos
-                          langs)
-                 my-pool)))
+    (do
+      ;; communication via two channels
+      ;; channel 1: a collection of repos of a particular lang
+      ;; channel 2: an individual repo
+      (consume-lang-repos ch-lang-repos ch-repos)
+      (consume-repos ch-repos)
+      (at-at/every check-frequency
+                   (partial produce-lang-repos
+                            ch-lang-repos
+                            langs)
+                   my-pool))))
