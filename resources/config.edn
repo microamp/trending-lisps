@@ -9,4 +9,8 @@
          "scheme" "Scheme"
          "shen" "Shen"}
  :cache {:host "localhost"
-         :port 6379}}
+         :port 6379}
+ :twitter {:app-consumer-key ""
+           :app-consumer-secret ""
+           :user-access-token ""
+           :user-access-secret ""}}
