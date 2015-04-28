@@ -4,7 +4,6 @@
 
 (def cache-expire (* 60 60 24 7 2)) ; cache lasts 2 weeks
 (def cfg (edn/read-file "config.edn"))
-
 (def conn {:pool {}
            :spec (:cache cfg)})
 

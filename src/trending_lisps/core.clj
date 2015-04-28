@@ -3,7 +3,8 @@
             [overtone.at-at :as at-at :refer [mk-pool]]
             [trending-lisps.scraper :as scraper]
             [trending-lisps.edn :as edn]
-            [trending-lisps.cache :as cache]))
+            [trending-lisps.cache :as cache]
+            [trending-lisps.twit :as twit]))
 
 (def check-frequency (* 1000 60)) ; 60 seconds
 
@@ -39,8 +40,8 @@
               (do
                 (update-cache repo)
                 (if cached?
-                  (prn (str (:name repo) " is not trending"))
-                  (prn (str (:name repo) " is TRENDING")))))))
+                  (prn (str (:name repo) " is starred but no longer trending"))
+                  (twit/twit-repo (:name repo) (:desc repo)))))))
         (recur))))
 
 (defn -main []

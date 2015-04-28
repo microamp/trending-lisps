@@ -7,5 +7,6 @@
                  [org.clojure/core.async "0.1.346.0-17112a-alpha"]
                  [enlive "1.1.5"]
                  [overtone/at-at "1.2.0"]
-                 [com.taoensso/carmine "2.9.2"]]
+                 [com.taoensso/carmine "2.9.2"]
+                 [twitter-api "0.7.8"]]
   :main trending-lisps.core)
