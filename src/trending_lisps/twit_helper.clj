@@ -1,5 +1,6 @@
-(ns trending-lisps.twit
-  (:require [trending-lisps.edn :as edn]
+(ns trending-lisps.twit-helper
+  (:require [clojure.tools.logging :as log]
+            [trending-lisps.edn :as edn]
             [twitter.api.restful :as twitter]
             [twitter.oauth :as twitter-oauth]))
 
@@ -26,6 +27,10 @@
 (defn twit-repo [name desc]
   (let [status (build-status name desc (get-short-name name))]
     (try
-      (twitter/statuses-update :oauth-creds twitter-creds
-                               :params {:status status})
-      (catch Exception e (prn (.getMessage e))))))
+      (do
+        (log/debug "twitting:" status)
+        ;(twitter/statuses-update :oauth-creds twitter-creds
+        ;                         :params {:status status})
+        )
+      (catch Exception e
+        (log/error "error:" (.getMessage e))))))

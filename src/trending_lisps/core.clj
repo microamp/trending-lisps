@@ -1,10 +1,11 @@
 (ns trending-lisps.core
-  (:require [clojure.core.async :as async :refer [chan go >! <! close!]]
+  (:require [clojure.tools.logging :as log]
+            [clojure.core.async :as async :refer [chan go >! <! close!]]
             [overtone.at-at :as at-at :refer [mk-pool]]
             [trending-lisps.scraper :as scraper]
             [trending-lisps.edn :as edn]
             [trending-lisps.cache :as cache]
-            [trending-lisps.twit :as twit]))
+            [trending-lisps.twit-helper :as twit-helper]))
 
 (def check-frequency (* 1000 60)) ; 60 seconds
 
@@ -40,8 +41,8 @@
               (do
                 (update-cache repo)
                 (if cached?
-                  (prn (str (:name repo) " is starred but no longer trending"))
-                  (twit/twit-repo (:name repo) (:desc repo)))))))
+                  (log/debug (:name repo) "is starred but not marked as trending")
+                  (twit-helper/twit-repo (:name repo) (:desc repo)))))))
         (recur))))
 
 (defn -main []
