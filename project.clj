@@ -12,4 +12,5 @@
                  [overtone/at-at "1.2.0"]
                  [com.taoensso/carmine "2.9.2"]
                  [twitter-api "0.7.8"]]
+  :plugins [[lein-environ "1.0.0"]]
   :main trending-lisps.core)

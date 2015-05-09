@@ -2,17 +2,16 @@
   (:require [clojure.tools.logging :as log]
             [trending-lisps.edn :as edn]
             [twitter.api.restful :as twitter]
-            [twitter.oauth :as twitter-oauth]))
+            [twitter.oauth :as twitter-oauth]
+            [environ.core :refer [env]]))
 
 (def status-limit 140)
 (def base-url "https://github.com")
-(def cfg (edn/read-file "config.edn"))
 (def twitter-creds
-  (let [twitter-cfg (:twitter cfg)]
-    (twitter-oauth/make-oauth-creds (:app-consumer-key twitter-cfg)
-                                    (:app-consumer-secret twitter-cfg)
-                                    (:user-access-token twitter-cfg)
-                                    (:user-access-secret twitter-cfg))))
+  (twitter-oauth/make-oauth-creds (env :app-consumer-key)
+                                  (env :app-consumer-secret)
+                                  (env :user-access-token)
+                                  (env :user-access-secret)))
 
 (defn get-short-name [name]
   (second (clojure.string/split name #"/")))
