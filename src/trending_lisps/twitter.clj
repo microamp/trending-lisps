@@ -1,4 +1,4 @@
-(ns trending-lisps.twit-helper
+(ns trending-lisps.twitter
   (:require [clojure.tools.logging :as log]
             [trending-lisps.edn :as edn]
             [twitter.api.restful :as twitter]
@@ -17,15 +17,15 @@
 (defn get-short-name [name]
   (second (clojure.string/split name #"/")))
 
-(defn build-status [name desc name-short]
+(defn build-status [lang name desc name-short]
   (let [link (str base-url "/" name)
         status (str name-short " - " desc " " link)]
     (if (> (count status) status-limit)
-      (str name-short " " link)
+      (str "[" lang "] " name-short " " link)
       status)))
 
-(defn twit-repo [name desc]
-  (let [status (build-status name desc (get-short-name name))]
+(defn twit-repo [lang name desc]
+  (let [status (build-status lang name desc (get-short-name name))]
     (try
       (do
         (log/debug "twitting:" status)

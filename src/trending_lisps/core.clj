@@ -5,7 +5,7 @@
             [trending-lisps.scraper :as scraper]
             [trending-lisps.edn :as edn]
             [trending-lisps.cache :as cache]
-            [trending-lisps.twit-helper :as twit-helper]))
+            [trending-lisps.twitter :as twitter]))
 
 (def check-frequency (* 1000 60)) ; 60 seconds
 
@@ -21,9 +21,8 @@
 
 (defn produce-lang-repos [ch-lang-repos langs]
   (doseq [lang (keys langs)]
-    (go (let [lang-repos
-              (map (fn [r] (assoc r :lang (get langs lang)))
-                   (scraper/build-repo-maps-starred-only lang))]
+    (go (let [lang-repos (map (fn [r] (assoc r :lang (get langs lang)))
+                              (scraper/build-repo-maps-starred-only lang))]
           (>! ch-lang-repos lang-repos)))))
 
 (defn consume-lang-repos [ch-lang-repos ch-repos]
@@ -42,7 +41,9 @@
                 (update-cache repo)
                 (if cached?
                   (log/debug (:name repo) "is starred but not marked as trending")
-                  (twit-helper/twit-repo (:name repo) (:desc repo)))))))
+                  (twitter/twit-repo (:lang repo)
+                                     (:name repo)
+                                     (:desc repo)))))))
         (recur))))
 
 (defn -main []
