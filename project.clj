@@ -14,4 +14,5 @@
                  [twitter-api "0.7.8"]
                  [environ "1.0.0"]]
   :plugins [[lein-environ "1.0.0"]]
+  :min-lein-version "2.0.0"
   :main trending-lisps.core)
