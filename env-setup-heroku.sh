@@ -1,3 +1,9 @@
+#!/bin/sh
+#
+# env-setup-heroku.sh
+#
+# command: `./env-setup-heroku.sh`
+
 heroku config:set CACHE_HOST=
 heroku config:set CACHE_PORT=
 heroku config:set TWITTER_APP_CONSUMER_KEY=
