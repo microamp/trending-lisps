@@ -1,0 +1,7 @@
+* Set up environments (local/Heroku)
+** `source env-setup.sh` to set up your local dev env
+** `./env-setup-heroku.sh` to set up your Heroku env
+* Heroku commands
+** `git push heroku master` to deploy
+** `heroku logs --tail` to view logs
+** `heroku config:get REDISCLOUD_URL` to list your Redis cloud URL on Heroku (format: http://rediscloud:password@hostname:port)

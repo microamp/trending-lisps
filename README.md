@@ -1,6 +1,6 @@
 # trending-lisps
 
-Lisps are trendy again. Here's a Twitter bot scraping/posting Lisp repos currently trending on GitHub. Languages considered as a Lisp dialect/derivative are:
+Lisps are trendy again. Here is a little bot twitting Lisp repos currently trending on GitHub. Languages considered as a Lisp dialect/derivative are:
 * Arc
 * Clojure
 * Common Lisp
