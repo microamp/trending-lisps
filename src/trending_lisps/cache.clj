@@ -4,7 +4,8 @@
             [environ.core :refer [env]]))
 
 (def cache-spec {:host (env :cache-host)
-                 :port (read-string (env :cache-port))})
+                 :port (read-string (env :cache-port))
+                 :password (env :cache-password)})
 (def conn {:pool {}
            :spec cache-spec})
 
