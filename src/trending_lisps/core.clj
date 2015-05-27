@@ -7,17 +7,14 @@
             [trending-lisps.cache :as cache]
             [trending-lisps.twitter :as twitter]))
 
-(def check-frequency (* 1000 60)) ; 60 seconds
-
 (def cfg (edn/read-file "config.edn"))
-
 (def my-pool (mk-pool))
 
 (defn cached? [repo]
   (not (nil? (cache/get-cache (:name repo)))))
 
-(defn update-cache [repo]
-  (cache/set-cache (:name repo) repo))
+(defn update-cache [repo expire]
+  (cache/set-cache (:name repo) repo expire))
 
 (defn produce-lang-repos [ch-lang-repos langs]
   (doseq [lang (keys langs)]
@@ -36,14 +33,17 @@
   (go (loop []
         (let [repo (<! ch-repos)]
           (if (not (nil? repo))
-            (let [cached? (cached? repo)]
-              (do
-                (update-cache repo)
-                (if cached?
-                  (log/debug (:name repo) "is starred but not marked as trending")
-                  (twitter/twit-repo (:lang repo)
-                                     (:name repo)
-                                     (:desc repo)))))))
+            (try
+              (let [cached? (cached? repo)]
+                (do (update-cache repo (:cache-expire-after cfg))
+                    (if cached?
+                      (log/debug (:name repo) "is starred but not marked as trending")
+                      (twitter/twit-repo (:lang repo)
+                                         (:name repo)
+                                         (:desc repo)
+                                         (:twit? cfg)))))
+              (catch Exception e
+                (log/error "error:" (.getMessage e))))))
         (recur))))
 
 (defn -main []
@@ -56,7 +56,7 @@
       ;; channel 2: an individual repo
       (consume-lang-repos ch-lang-repos ch-repos)
       (consume-repos ch-repos)
-      (at-at/every check-frequency
+      (at-at/every (:scrape-every cfg)
                    (partial produce-lang-repos
                             ch-lang-repos
                             langs)

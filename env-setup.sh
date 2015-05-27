@@ -1,0 +1,8 @@
+export CACHE_HOST=localhost
+export CACHE_PORT=6379
+export TWITTER_APP_CONSUMER_KEY=
+export TWITTER_APP_CONSUMER_SECRET=
+export TWITTER_USER_ACCESS_TOKEN=
+export TWITTER_USER_ACCESS_SECRET=
+
+echo "env set up successfully"

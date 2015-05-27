@@ -1,6 +1,6 @@
-(defproject trending-lisps "0.1.0-SNAPSHOT"
-  :description "FIXME: write description"
-  :url "http://example.com/FIXME"
+(defproject trending-lisps "0.1.1"
+  :description "Trending Lisps on GitHub"
+  :url "https://github.com/microamp/trending-lisps"
   :license {:name "Eclipse Public License"
             :url "http://www.eclipse.org/legal/epl-v10.html"}
   :dependencies [[org.clojure/clojure "1.6.0"]
@@ -11,6 +11,7 @@
                  [enlive "1.1.5"]
                  [overtone/at-at "1.2.0"]
                  [com.taoensso/carmine "2.9.2"]
-                 [twitter-api "0.7.8"]]
+                 [twitter-api "0.7.8"]
+                 [environ "1.0.0"]]
   :plugins [[lein-environ "1.0.0"]]
   :main trending-lisps.core)

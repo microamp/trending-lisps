@@ -1,14 +1,21 @@
 # trending-lisps
 
-A Clojure library designed to ... well, that part is up to you.
-
-## Usage
-
-FIXME
+Lisps are trendy again. Here's a Twitter bot scraping/posting Lisp repos currently trending on GitHub. Languages considered as a Lisp dialect/derivative are:
+* Arc
+* Clojure
+* Common Lisp
+* Dylan
+* Emacs Lisp
+* Hy
+* Julia
+* NewLisp
+* Racket
+* Scheme
+* Shen
 
 ## License
 
-Copyright © 2015 FIXME
+Copyright © 2015 james sangho nah
 
 Distributed under the Eclipse Public License either version 1.0 or (at
 your option) any later version.
