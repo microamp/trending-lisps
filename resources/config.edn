@@ -9,9 +9,9 @@
          "racket" "Racket"
          "scheme" "Scheme"
          "shen" "Shen"}
- ;; pages scraped every 60 mins, (* 1000 60 60)
- :scrape-every 3600000
+ ;; pages scraped every 120 mins, (* 1000 60 60 2)
+ :scrape-every 7200000
  ;; cache expired after 2 weeks, (* 60 60 24 7 2)
  :cache-expire-after 1209600
  ;; flag to turn on/off tweet
- :twit? false}
+ :twit? true}
