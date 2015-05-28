@@ -46,7 +46,7 @@
                 (log/error "error:" (.getMessage e))))))
         (recur))))
 
-(defn -main []
+(defn -main [& args]
   (let [ch-lang-repos (chan)
         ch-repos (chan)
         langs (:langs cfg)]
