@@ -1,6 +1,6 @@
 # trending-lisps
 
-Twittering Lisp repos currently trending on GitHub. Languages considered as a Lisp dialect/derivative are:
+[Twittering Lisp repos currently trending on GitHub](https://twitter.com/trendinglisps). Languages considered as a Lisp dialect/derivative are:
 * Arc
 * Clojure
 * Common Lisp
@@ -12,6 +12,10 @@ Twittering Lisp repos currently trending on GitHub. Languages considered as a Li
 * Racket
 * Scheme
 * Shen
+
+## Inspiration
+
+This awesome [USLR](https://pbs.twimg.com/media/B8VAv3lCAAEu-mh.png) logo by @oubiwann ([original tweet](https://twitter.com/oubiwann/status/559924921074065409))
 
 ## License
 
